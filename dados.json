@@ -1,0 +1,33 @@
+{
+	"versao": "vbeta",
+	"nome": "Enduro à pé",
+	"tempo": "12:32",
+	"iniciou": "true",
+	"acabou": "false",
+	"equipes": [
+		{
+			"id": "1",
+			"nome": "alface",
+			"checkpoints": "4",
+			"pontos": "22"
+		},
+		{
+			"id": "2",
+			"nome": "pomba",
+			"checkpoints": "4",
+			"pontos": "28"
+		},
+		{
+			"id": "3",
+			"nome": "curucucus",
+			"checkpoints": "3",
+			"pontos": "22"
+		},
+		{
+			"id": "4",
+			"nome": "info",
+			"checkpoints": "7",
+			"pontos": "20"
+		}
+	]
+}
