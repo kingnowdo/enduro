@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.endurobee.enduro.R;
@@ -15,10 +16,15 @@ public class DadosListAdapter extends BaseAdapter {
 
     Context context;
     private ArrayList<Equipe> equipes;
+    public static int max = 0;
 
     public DadosListAdapter(Context context, ArrayList<Equipe> arrayList){
         this.context = context;
         this.equipes = arrayList;
+    }
+
+    public static void setMax(int max) {
+        DadosListAdapter.max = max;
     }
 
     @Override
@@ -40,8 +46,11 @@ public class DadosListAdapter extends BaseAdapter {
         View itemListView = LayoutInflater.from(this.context).inflate(R.layout.listview_adapter, viewGroup, false);
 
         TextView texto = itemListView.findViewById(R.id.item_list);
+        ProgressBar barra = itemListView.findViewById(R.id.barraprogresso);
 
-        texto.setText("   " + dadosEquipes.getNome() + ": " + dadosEquipes.getCheckpoints() + " - " + dadosEquipes.getPontos() + " pontos");
+        texto.setText("   " + dadosEquipes.getNome() + " - " + dadosEquipes.getPontos() + " pontos");
+        barra.setMax(max);
+        barra.setProgress(dadosEquipes.getCheckpoints());
 
         return itemListView;
     }

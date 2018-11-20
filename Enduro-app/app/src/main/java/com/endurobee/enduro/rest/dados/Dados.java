@@ -19,7 +19,7 @@ public class Dados {
     private String tempo;
     @SerializedName("tCheckpoints")
     @Expose
-    private String totalCheckpoints;
+    private Integer totalCheckpoints;
     @SerializedName("iniciou")
     @Expose
     private String iniciou;
@@ -54,11 +54,11 @@ public class Dados {
         this.tempo = tempo;
     }
 
-    public String getTotalCheckpoints() {
+    public Integer getTotalCheckpoints() {
         return totalCheckpoints;
     }
 
-    public void setTotalCheckpoints(String totalCheckpoints) {
+    public void setTotalCheckpoints(Integer totalCheckpoints) {
         this.totalCheckpoints = totalCheckpoints;
     }
 

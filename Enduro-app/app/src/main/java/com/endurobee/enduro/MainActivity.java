@@ -42,10 +42,13 @@ public class MainActivity extends Activity {
             @Override
             public void onResponse(Call<Dados> call, Response<Dados> response) {// executado quando resposta for recebida
                 Dados resultados = response.body();
-                equipesArray.clear();
-                equipesArray.addAll(resultados.getEquipes());
-                dadosAdapter.notifyDataSetChanged();
                 if(resultados == null) Toast.makeText(MainActivity.this,"Ocorreu um erro",Toast.LENGTH_SHORT).show();
+                else {
+                    equipesArray.clear();
+                    equipesArray.addAll(resultados.getEquipes());
+                    DadosListAdapter.setMax(resultados.getTotalCheckpoints());
+                    dadosAdapter.notifyDataSetChanged();
+                }
             }
             @Override
             public void onFailure(Call<Dados> call, Throwable t) {//executado quando houver erros
