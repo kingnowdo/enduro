@@ -33,7 +33,13 @@ public class MainActivity extends Activity {
         cidadesList.setAdapter(dadosAdapter);
     }
 
-    public void atualizar(View view) {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        atualizar();
+    }
+
+    public void atualizar(){
         RetrofitConfig retrofitConfig = new RetrofitConfig();
         final DadosService serviceA = retrofitConfig.getDadosService();
         Call<Dados> request = serviceA.getDados();
@@ -58,5 +64,14 @@ public class MainActivity extends Activity {
                 Toast.makeText(MainActivity.this,"Erro de rede",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    public void atualizar(View view) {
+        atualizar();
+    }
+
+    public void mostraAjuda(View view) {
+    }
+
+    public void mudarOrdem(View view) {
     }
 }

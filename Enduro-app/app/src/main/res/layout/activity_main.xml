@@ -7,11 +7,32 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Atualizar"
-        android:onClick="atualizar"/>
+        android:padding="3dp"
+        android:stretchColumns="1">
+        <TableRow>
+            <Button
+                android:layout_height="50dp"
+                android:text="Ordem"
+                android:onClick="mudarOrdem"/>
+
+            <TextView />
+
+            <ImageButton
+                android:layout_height="50dp"
+                android:onClick="atualizar"
+                android:src="@android:drawable/stat_notify_sync_noanim"
+                android:text="Atualizar" />
+
+            <ImageButton
+                android:layout_height="50dp"
+                android:onClick="mostraAjuda"
+                android:src="@android:drawable/ic_menu_help"
+                android:text="Ajuda" />
+        </TableRow>
+    </TableLayout>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
