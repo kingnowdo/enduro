@@ -13,7 +13,7 @@ import com.endurobee.enduro.rest.dados.DadosService;
 import com.endurobee.enduro.rest.dados.Equipe;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,6 +45,8 @@ public class MainActivity extends Activity {
                 if(resultados == null) Toast.makeText(MainActivity.this,"Ocorreu um erro",Toast.LENGTH_SHORT).show();
                 else {
                     equipesArray.clear();
+                    ArrayList<Equipe> e = resultados.getEquipes();
+                    Collections.sort(e);
                     equipesArray.addAll(resultados.getEquipes());
                     DadosListAdapter.setMax(resultados.getTotalCheckpoints());
                     dadosAdapter.notifyDataSetChanged();

@@ -3,7 +3,7 @@ package com.endurobee.enduro.rest.dados;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Equipe {
+public class Equipe implements Comparable<Equipe>{
 
     @SerializedName("id")
     @Expose
@@ -50,4 +50,14 @@ public class Equipe {
         this.pontos = pontos;
     }
 
+    @Override
+    public int compareTo(Equipe o) {
+        if(this.getPontos() > o.getPontos()) return -1;
+        else if(this.getPontos() < o.getPontos()) return 1;
+        else {
+            if(this.getCheckpoints() > o.getCheckpoints()) return -1;
+            else if(this.getCheckpoints() < o.getCheckpoints()) return 1;
+        }
+        return 0;
+    }
 }
