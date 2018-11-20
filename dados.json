@@ -2,6 +2,7 @@
 	"versao": "vbeta",
 	"nome": "Enduro à pé",
 	"tempo": "12:32",
+	"tCheckpoints": "10",
 	"iniciou": "true",
 	"acabou": "false",
 	"equipes": [
