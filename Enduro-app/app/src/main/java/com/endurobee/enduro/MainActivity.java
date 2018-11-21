@@ -2,6 +2,7 @@ package com.endurobee.enduro;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -39,7 +40,19 @@ public class MainActivity extends Activity {
         atualizar();
     }
 
-    public void atualizar(){
+    private void repreencherLista(){
+        Shared s = Shared.getInstance();
+
+        ArrayList<Equipe> e = s.getEquipes();
+        Collections.sort(e);
+
+        equipesArray.clear();
+        equipesArray.addAll(e);
+        dadosAdapter.notifyDataSetChanged();
+
+        Log.i("Debug", "repreencherLista: executado");
+    }
+    private void atualizar(){
         RetrofitConfig retrofitConfig = new RetrofitConfig();
         final DadosService serviceA = retrofitConfig.getDadosService();
         Call<Dados> request = serviceA.getDados();
@@ -50,12 +63,11 @@ public class MainActivity extends Activity {
                 Dados resultados = response.body();
                 if(resultados == null) Toast.makeText(MainActivity.this,"Ocorreu um erro",Toast.LENGTH_SHORT).show();
                 else {
-                    equipesArray.clear();
-                    ArrayList<Equipe> e = resultados.getEquipes();
-                    Collections.sort(e);
-                    equipesArray.addAll(resultados.getEquipes());
+                    Shared s = Shared.getInstance();
+                    s.setEquipes(resultados.getEquipes());
                     DadosListAdapter.setMax(resultados.getTotalCheckpoints());
-                    dadosAdapter.notifyDataSetChanged();
+
+                    repreencherLista();
                 }
             }
             @Override
@@ -70,8 +82,25 @@ public class MainActivity extends Activity {
     }
 
     public void mostraAjuda(View view) {
+        //TODO Diálogo
     }
 
     public void mudarOrdem(View view) {
+        Shared s = Shared.getInstance();
+        boolean ordem;
+        boolean atualizar;
+
+        //TODO diálogo
+        if(s.getOrdem()) ordem=false;
+        else ordem=true;
+        ///////////////
+
+        if(ordem!=s.getOrdem()) atualizar = true;
+        else atualizar = false;
+
+        Log.i("Debug", "mudarOrdem: antes era " + s.getOrdem() + " agora é " + ordem);
+        s.setOrdem(ordem);
+
+        if(atualizar && s.getCarregado()) repreencherLista();
     }
 }
