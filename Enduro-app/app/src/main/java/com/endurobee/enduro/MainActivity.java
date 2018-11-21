@@ -1,6 +1,8 @@
 package com.endurobee.enduro;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -82,7 +84,19 @@ public class MainActivity extends Activity {
     }
 
     public void mostraAjuda(View view) {
-        //TODO Diálogo
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(this);
+        alertBuilder
+                .setTitle("Ajuda")
+                .setMessage("Este aplicativo permite visualizar em tempo real o estado das equipes no enduro.\n" +
+                            "A barra de progresso mostra o estado da equipe em quantos checkpoints ela passou, os pontos dependem dos checkpoints mas também do cumprimento do tempo.\n" +
+                            "Você pode ordenar por a maior pontuação primeiro ou o maior progresso primeiro.")
+                .setPositiveButton("Entendi", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        alertBuilder.create().show();
     }
 
     public void mudarOrdem(View view) {
